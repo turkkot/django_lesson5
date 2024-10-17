@@ -1,5 +1,5 @@
 from django.contrib import admin
-from stundentWorksPlatform import models
+from studentWorksPlatform import models
 
 @admin.register(models.Subject)
 class SubjectAdmin(admin.ModelAdmin):

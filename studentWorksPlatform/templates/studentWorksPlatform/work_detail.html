@@ -1,0 +1,19 @@
+{% extends 'studentWorksPlatform/base.html' %}
+
+{% block content %}
+<h1>{{ work.title }}</h1>
+<p><strong>Описание:</strong> {{ work.description }}</p>
+<p><strong>Дисциплина:</strong> {{ work.subject.name }}</p>
+<p><strong>Автор:</strong> {{ work.author.username }}</p>
+<p><strong>Цена:</strong> {{ work.price }} рублей</p>
+    
+{% if work.university %}
+<p><strong>Университет:</strong> {{ work.university.name }}</p>
+{% endif %}
+{% if work.professor %}
+<p><strong>Преподаватель:</strong> {{ work.professor.name }}</p>
+{% endif %}
+
+<a href="{% url 'work_edit' work.id %}">Редактировать</a>
+<a href="{% url 'work_delete' work.id %}">Удалить</a>
+{% endblock %}

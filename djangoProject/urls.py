@@ -16,7 +16,17 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from studentWorksPlatform.views import WorkListView, WorkDetailView, WorkCreateView, WorkUpdateView, WorkDeleteView, UserListView
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('', WorkListView.as_view(), name='work_list'),
+    path('work/<int:pk>/', WorkDetailView.as_view(), name='work_detail'),
+    path('work/create/', WorkCreateView.as_view(), name='add_work'),
+    path('work/<int:pk>/edit/', WorkUpdateView.as_view(), name='work_edit'),
+    path('work/<int:pk>/delete/', WorkDeleteView.as_view(), name='work_delete'),
+
+    path('users/', UserListView.as_view(), name='user_list'),  # Используем класс-представление
+
 ]

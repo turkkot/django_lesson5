@@ -1,0 +1,14 @@
+{% extends 'studentWorksPlatform/base.html' %}
+
+{% block content %}
+<h1>Работы</h1>
+<ul>
+    {% for work in works %}
+        <li>
+            <a href="{% url 'work_detail' work.id %}">{{ work.title |truncatechars:40 }}</a> - {{ work.subject.name }}
+        </li>
+    {% empty %}
+        <li>Нет доступных работ</li>
+    {% endfor %}
+</ul>
+{% endblock %}

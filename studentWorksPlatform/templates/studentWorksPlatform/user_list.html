@@ -1,0 +1,41 @@
+{% extends 'studentWorksPlatform/base.html' %}
+
+{% block title %}Список пользователей{% endblock %}
+
+{% block content %}
+<h1>Список пользователей</h1>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Имя пользователя</th>
+            <th>Email</th>
+            <th>Баланс</th>
+            <th>Университет</th>
+            <th>Факультет</th>
+            <th>Группа</th>
+            <th>Дата начала обучения</th>
+            <th>Дата окончания обучения</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for user in users %}
+        <tr>
+            <td>{{ user.username}}</td>
+            <td>{{ user.email}}</td>
+            <td>{{ user.balance }}</td>
+            <td>{{ user.university.name|default:"Не указано" }}</td>
+            <td>{{ user.faculty.name|default:"Не указано" }}</td>
+            <td>{{ user.group.name|default:"Не указано" }}</td>
+            <td>{{ user.start_date|date:"d.m.Y"|default:"Не указано" }}</td>
+            <td>{{ user.end_date|date:"d.m.Y"|default:"Не указано" }}</td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="8">Нет данных</td>
+        </tr>
+        {% endfor %}
+        <p>Количество пользователей: {{ users|length }}</p>
+    </tbody>
+</table>
+{% endblock %}
