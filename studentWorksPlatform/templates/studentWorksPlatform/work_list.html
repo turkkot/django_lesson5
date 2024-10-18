@@ -1,4 +1,20 @@
 {% extends 'studentWorksPlatform/base.html' %}
+{% load bootstrap5 %}
+
+
+{% block sidebar %}
+    <div class = "col-md-3">
+        <div class = "card-body">
+            <form method="get">
+                {% csrf_token %}
+                {{ filter.form.as_p }}
+                {% buttons  %}
+                    <button type="submit" class="btn btn-primary"> Поиск </button>
+                {% endbuttons %}
+            </form>
+        </div>
+    </div>
+{% endblock %}
 
 {% block content %}
 <h1>Работы</h1>

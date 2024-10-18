@@ -1,15 +1,18 @@
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from .models import Work, User
 from django.urls import reverse_lazy
+from django_filters.views import FilterView
+from studentWorksPlatform import filters
 
 
 
 # Create your views here.
-class WorkListView(ListView):
+class WorkListView(FilterView):
     model = Work
     template_name = 'studentWorksPlatform/work_list.html'
     context_object_name = 'works'
     ordering = ['-created_at']
+    filterset_class = filters.Work
 
 
 class WorkDetailView(DetailView):
@@ -35,11 +38,12 @@ class WorkDeleteView(DeleteView):
     template_name = 'studentWorksPlatform/work_confirm_delete.html'
     success_url = reverse_lazy('work_list')
 
-class UserListView(ListView):
+class UserListView(FilterView):
     model = User
     template_name = 'studentWorksPlatform/user_list.html'
     context_object_name = 'users'
     ordering = ['-created_at']
+    filterset_class = filters.UserFilter
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
