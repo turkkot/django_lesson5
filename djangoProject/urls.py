@@ -27,6 +27,6 @@ urlpatterns = [
     path('work/<int:pk>/edit/', WorkUpdateView.as_view(), name='work_edit'),
     path('work/<int:pk>/delete/', WorkDeleteView.as_view(), name='work_delete'),
 
-    path('users/', UserListView.as_view(), name='user_list'),  # Используем класс-представление
+    path('users/', UserListView.as_view(), name='user_list'),
 
 ]
