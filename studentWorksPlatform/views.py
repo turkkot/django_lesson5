@@ -3,10 +3,22 @@ from .models import Work, User
 from django.urls import reverse_lazy
 from django_filters.views import FilterView
 from studentWorksPlatform import filters
+from rest_framework import viewsets
 
 
+from studentWorksPlatform import serializers
 
 # Create your views here.
+
+
+class UserAPI(viewsets.ModelViewSet):
+    queryset = User.objects.all()
+    serializer_class = serializers.UserSerializer
+
+class WorkAPI(viewsets.ModelViewSet):
+    queryset = Work.objects.all()
+    serializer_class = serializers.WorkSerializer
+
 class WorkListView(FilterView):
     model = Work
     template_name = 'studentWorksPlatform/work_list.html'
